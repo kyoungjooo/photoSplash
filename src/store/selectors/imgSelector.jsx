@@ -1,7 +1,8 @@
 import { selector } from "recoil";
 import axios from "axios";
 import { searchState } from "../atoms/searchState";
-import { pageState } from "../atoms/PAGESTATE.JSX";
+import { pageState } from "../atoms/pageState";
+import { useEffect } from "react";
 
 export const imageData = selector({
   key: "imageData",
@@ -18,7 +19,7 @@ export const imageData = selector({
       const res = await axios.get(
         `${API_URL}?query=${searchValue}&client_id=${API_KEY}&page=${pageValue}&per_page=${PER_PAGE}`
       );
-      return res;
+      return res.data.results;
     } catch (error) {
       console.log(error);
     }

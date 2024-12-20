@@ -1,15 +1,23 @@
 import * as Style from "./dialogStyle";
 
-const DialogDetail = () => {
+const DialogDetail = ({ imgData, handleDialog }) => {
+  console.log(imgData);
+  const closeDialog = () => {
+    handleDialog(false);
+  };
   return (
     <>
       <Style.DialogWrapper>
         <Style.Dialog>
           <Style.DialogHeader>
             <Style.Close>
-              <Style.CloseBtn>{/* 아이콘 */}닫기</Style.CloseBtn>
+              <Style.CloseBtn onClick={closeDialog}>
+                {/* 아이콘 */}닫기
+              </Style.CloseBtn>
               <Style.CloseAuth src="" alt="" />
-              <Style.CloseAuthName></Style.CloseAuthName>
+              <Style.CloseAuthName>
+                {imgData.user.first_name}
+              </Style.CloseAuthName>
             </Style.Close>
             <Style.BookMark>
               <Style.BookMarkBtn>{/* 아이콘 */}북마크</Style.BookMarkBtn>
@@ -17,15 +25,21 @@ const DialogDetail = () => {
             </Style.BookMark>
           </Style.DialogHeader>
           <Style.DialogBody>
-            <Style.DialogImg />
+            <Style.DialogImg src={imgData.urls.small} />
           </Style.DialogBody>
           <Style.DialogFooter>
             <Style.InfoBox>
               <Style.InfoBoxItem>
                 <Style.InfoBoxItemLabel>이미지 크기</Style.InfoBoxItemLabel>
                 <Style.InfoBoxItemValue>
-                  상세 데이터 조회
+                  {imgData.width} X {imgData.height}
                 </Style.InfoBoxItemValue>
+                <Style.InfoBoxItemLabel>업로드</Style.InfoBoxItemLabel>
+                <Style.InfoBoxItemValue>
+                  {imgData.created_at.split("T")[0]}
+                </Style.InfoBoxItemValue>
+                <Style.InfoBoxItemLabel>다운로드</Style.InfoBoxItemLabel>
+                <Style.InfoBoxItemValue>{imgData.likes}</Style.InfoBoxItemValue>
               </Style.InfoBoxItem>
             </Style.InfoBox>
             <Style.TagBox>

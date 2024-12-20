@@ -1,7 +1,8 @@
 import * as Style from "./cardStyle.js";
 
-const CardItem = ({ card, handleDialog }) => {
+const CardItem = ({ card, handleDialog, getImgData }) => {
   const openDialog = () => {
+    getImgData(card);
     handleDialog(true);
   };
   return (

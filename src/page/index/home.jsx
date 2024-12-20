@@ -1,31 +1,42 @@
-import CardItem from "../../components/card/card.jsx";
+import { useRecoilValueLoadable } from "recoil";
+import { useState } from "react";
+import CardItem from "../../components/card/cardItem.jsx";
 import Header from "../../components/header/header.jsx";
 import Navbar from "../../components/navigation/navbar.jsx";
 import Footer from "../../components/footer/footer.jsx";
 import * as Style from "../../page/index/indexStyle.js";
-import { useRecoilValue } from "recoil";
+
 import { imageData } from "../../store/selectors/imgSelector.jsx";
 import DialogDetail from "../../components/dialog/dialogDetail.jsx";
-import { useState } from "react";
 
 const Home = () => {
-  const imgSelector = useRecoilValue(imageData);
+  const imgSelector = useRecoilValueLoadable(imageData);
+  const [imgData, setImgData] = useState(null);
   const [isOpen, setOpen] = useState(false);
+
   return (
     <>
-      <div className="cardWrapper">
+      <div className="cardContainer">
         <Navbar />
         <Header />
         <Style.CardWrapper>
-          {imgSelector.data.results.map((card) => {
-            return (
-              <CardItem card={card} key={card.id} handleDialog={setOpen} />
-            );
-          })}
+          {imgSelector.state === "hasValue" ? (
+            imgSelector.contents.map((card) => {
+              return (
+                <CardItem
+                  card={card}
+                  key={card.id}
+                  handleDialog={setOpen}
+                  getImgData={setImgData}
+                />
+              );
+            })
+          ) : (
+            <div>로딩중</div>
+          )}
         </Style.CardWrapper>
-
         <Footer />
-        {isOpen && <DialogDetail />}
+        {isOpen && <DialogDetail imgData={imgData} handleDialog={setOpen} />}
       </div>
     </>
   );
