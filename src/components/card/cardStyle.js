@@ -1,14 +1,7 @@
 import styled from "@emotion/styled";
 
-export const CardWrapper = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-`;
 export const Card = styled.li`
-  height: 260px;
+  height: 200px;
   border-radius: 6px;
   margin: 0;
   padding: 0;
