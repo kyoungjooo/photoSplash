@@ -20,20 +20,18 @@ const Home = () => {
         <Navbar />
         <Header />
         <Style.CardWrapper>
-          {imgSelector.state === "hasValue" ? (
-            imgSelector.contents.map((card) => {
-              return (
-                <CardItem
-                  card={card}
-                  key={card.id}
-                  handleDialog={setOpen}
-                  getImgData={setImgData}
-                />
-              );
-            })
-          ) : (
-            <div>로딩중</div>
-          )}
+          {imgSelector.state === "hasValue"
+            ? imgSelector.contents.map((card) => {
+                return (
+                  <CardItem
+                    card={card}
+                    key={card.id}
+                    handleDialog={setOpen}
+                    getImgData={setImgData}
+                  />
+                );
+              })
+            : ""}
         </Style.CardWrapper>
         <Footer />
         {isOpen && <DialogDetail imgData={imgData} handleDialog={setOpen} />}
