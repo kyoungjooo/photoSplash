@@ -14,7 +14,6 @@ const Home = () => {
   const imgSelector = useRecoilValueLoadable(imageData);
   const [imgData, setImgData] = useState(null);
   const [isOpen, setOpen] = useState(false);
-
   return (
     <>
       <div className="cardContainer">
@@ -23,7 +22,8 @@ const Home = () => {
         <Header />
         <Style.CardWrapper>
           {imgSelector.state === "hasValue"
-            ? imgSelector.contents.map((card) => {
+            ? imgSelector.contents.results.map((card) => {
+                console.log("카드", card);
                 return (
                   <CardItem
                     card={card}

@@ -1,7 +1,6 @@
 import * as Style from "./dialogStyle";
 
 const DialogDetail = ({ imgData, handleDialog }) => {
-  console.log(imgData);
   const closeDialog = () => {
     handleDialog(false);
   };

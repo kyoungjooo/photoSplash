@@ -11,6 +11,7 @@ const Navbar = () => {
   const [nav, setNav] = useState(navList);
   const [page, setPage] = useRecoilState(pageState);
   const [search, setSearch] = useRecoilState(searchState);
+  console.log(nav);
   useEffect(() => {
     nav.forEach((navEl) => {
       navEl.isActive = false;
