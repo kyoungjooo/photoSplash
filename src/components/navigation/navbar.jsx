@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as Style from "./navStyle.js";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import navList from "./nav.json";
 import { useRecoilState } from "recoil";
 import { pageState } from "../../store/atoms/pageState.jsx";
@@ -24,16 +24,17 @@ const Navbar = () => {
       }
       setNav([...nav]);
     });
-    console.log(nav);
   }, [location.pathname]);
 
   return (
     <Style.Nav>
       {nav.map((item) => {
         return (
-          <Link to={item.path} key={item.label}>
-            <span>{item.label}</span>
-          </Link>
+          <Style.NavLable to={item.path} key={item.label}>
+            <Style.NavLabelText isActive={item.isActive}>
+              {item.label}
+            </Style.NavLabelText>
+          </Style.NavLable>
         );
       })}
     </Style.Nav>

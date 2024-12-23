@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 export const Nav = styled.div`
   display: flex;
@@ -15,4 +16,10 @@ export const NavMenu = styled.div`
   height: 100%;
   text-decoration: none;
 `;
-export const NavMenuLable = styled.span``;
+export const NavLable = styled(Link)`
+  text-decoration: none;
+  border-bottom: none;
+`;
+export const NavLabelText = styled.span`
+  color: ${(props) => (props.isActive ? "blue" : "black")};
+`;
