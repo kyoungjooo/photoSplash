@@ -22,4 +22,7 @@ export const NavLable = styled(Link)`
 `;
 export const NavLabelText = styled.span`
   color: ${(props) => (props.isActive ? "blue" : "black")};
+  &:hover {
+    color: blue;
+  }
 `;

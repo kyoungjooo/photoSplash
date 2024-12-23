@@ -8,6 +8,7 @@ import * as Style from "../../page/index/indexStyle.js";
 
 import { imageData } from "../../store/selectors/imgSelector.jsx";
 import DialogDetail from "../../components/dialog/dialogDetail.jsx";
+import SearchBar from "../../components/searchBar/searchBar.jsx";
 
 const Home = () => {
   const imgSelector = useRecoilValueLoadable(imageData);
@@ -18,6 +19,7 @@ const Home = () => {
     <>
       <div className="cardContainer">
         <Navbar />
+        <SearchBar />
         <Header />
         <Style.CardWrapper>
           {imgSelector.state === "hasValue"
