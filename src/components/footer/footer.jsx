@@ -45,7 +45,11 @@ const Footer = () => {
         <Style.PaginationBtn onClick={moveToPrev}>이전</Style.PaginationBtn>
         {/* 변경될 UI 부분 */}
         {res[step]?.map((page) => {
-          return <button onClick={() => handlePage(page)}>{page + 1}</button>;
+          return (
+            <button onClick={() => handlePage(page)} key={page}>
+              {page + 1}
+            </button>
+          );
         })}
         <Style.PaginationBtn onClick={moveToNext}>다음</Style.PaginationBtn>
       </Style.Pagination>

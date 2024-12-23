@@ -6,11 +6,12 @@ export const Footer = styled.div`
   justify-content: center;
   width: 100%;
   height: 56px;
-  padding: 0 16px;
   border: 1px solid;
+  margin: 0;
 `;
 export const Pagination = styled.div`
   display: flex;
+  margin: 0;
   align-items: center;
   justify-content: center;
   width: 100%;

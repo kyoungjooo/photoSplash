@@ -5,6 +5,7 @@ import Header from "../../components/header/header.jsx";
 import Navbar from "../../components/navigation/navbar.jsx";
 import Footer from "../../components/footer/footer.jsx";
 import * as Style from "../../page/index/indexStyle.js";
+import { Loading } from "./spinner.js";
 
 import { imageData } from "../../store/selectors/imgSelector.jsx";
 import DialogDetail from "../../components/dialog/dialogDetail.jsx";
@@ -21,19 +22,20 @@ const Home = () => {
         <SearchBar />
         <Header />
         <Style.CardWrapper>
-          {imgSelector.state === "hasValue"
-            ? imgSelector.contents.results.map((card) => {
-                console.log("카드", card);
-                return (
-                  <CardItem
-                    card={card}
-                    key={card.id}
-                    handleDialog={setOpen}
-                    getImgData={setImgData}
-                  />
-                );
-              })
-            : ""}
+          {imgSelector.state === "hasValue" ? (
+            imgSelector.contents.results.map((card) => {
+              return (
+                <CardItem
+                  card={card}
+                  key={card.id}
+                  handleDialog={setOpen}
+                  getImgData={setImgData}
+                />
+              );
+            })
+          ) : (
+            <Loading></Loading>
+          )}
         </Style.CardWrapper>
         <Footer />
         {isOpen && <DialogDetail imgData={imgData} handleDialog={setOpen} />}
