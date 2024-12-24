@@ -1,13 +1,24 @@
+import { useEffect } from "react";
 import * as Style from "./dialogStyle";
 
 const DialogDetail = ({ imgData, handleDialog }) => {
-  const closeDialog = () => {
+  const closeDialog = (e) => {
     handleDialog(false);
   };
+
+  useEffect(() => {
+    //esc 누르면 dialog 닫기
+    const escKeyDownCloseDialog = (e) => {
+      if (e.key === "Escape") closeDialog();
+    };
+    document.addEventListener("keydown", escKeyDownCloseDialog);
+    return () => document.addEventListener("keyDown", escKeyDownCloseDialog);
+  }, []);
+
   return (
     <>
-      <Style.DialogWrapper>
-        <Style.Dialog>
+      <Style.DialogWrapper onClick={closeDialog}>
+        <Style.Dialog onClick={(e) => e.stopPropagation(e)}>
           <Style.DialogHeader>
             <Style.Close>
               <Style.CloseBtn onClick={closeDialog}>
