@@ -11,9 +11,11 @@ const DialogDetail = ({ imgData, handleDialog }) => {
     const escKeyDownCloseDialog = (e) => {
       if (e.key === "Escape") closeDialog();
     };
+
     document.addEventListener("keydown", escKeyDownCloseDialog);
-    return () => document.addEventListener("keyDown", escKeyDownCloseDialog);
-  }, []);
+
+    return () => document.removeEventListener("keyDown", escKeyDownCloseDialog);
+  }, [closeDialog]);
 
   return (
     <>

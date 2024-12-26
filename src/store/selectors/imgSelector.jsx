@@ -2,7 +2,6 @@ import { selector } from "recoil";
 import axios from "axios";
 import { searchState } from "../atoms/searchState";
 import { pageState } from "../atoms/pageState";
-import { useEffect } from "react";
 
 export const imageData = selector({
   key: "imageData",
