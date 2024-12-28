@@ -1,7 +1,32 @@
-import React from "react";
-import { Map } from "react-kakao-maps-sdk";
+import React, { useEffect, useState } from "react";
+import { Map as KakaoMap, MapMarker } from "react-kakao-maps-sdk";
+import locationIcon from "../assets/images/location.svg";
+function RenderKakaoMap() {
+  // 지도의 중심좌표
+  const [center, setCenter] = useState({
+    lat: 33.450701,
+    lng: 126.570667,
+  });
+  // 현재 위치
+  const [position, setPosition] = useState({
+    lat: 33.450701,
+    lng: 126.570667,
+  });
 
-function KakaoMap(props) {
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+    });
+    navigator.geolocation.watchPosition((pos) => {
+      setPosition({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+    });
+  }, []);
+
+  // const markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+  // const marker = new kakao.maps.Marker({
+  //   position: markerPosition,
+  // });
+
   const searchPlaces = (e) => {
     e.preventDefault();
     const keyword = e.target.keyword.value;
@@ -20,6 +45,7 @@ function KakaoMap(props) {
       return;
     }
   }
+
   return (
     <div>
       <form onSubmit={searchPlaces}>
@@ -27,13 +53,21 @@ function KakaoMap(props) {
         <button type="submit">검색하기</button>
       </form>
 
-      <Map
-        center={{ lat: 33.450701, lng: 126.570667 }}
-        style={{ width: "1000px", height: "600px" }}
+      <KakaoMap
+        center={center}
+        style={{ width: "100vw", height: "100vh" }}
         level={3}
-      />
+      >
+        <MapMarker
+          image={{
+            src: locationIcon,
+            size: { width: 48, height: 48 },
+          }}
+          position={position}
+        />
+      </KakaoMap>
     </div>
   );
 }
 
-export default KakaoMap;
+export default RenderKakaoMap;
