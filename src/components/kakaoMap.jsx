@@ -16,7 +16,7 @@ function RenderKakaoMap() {
     lat: 0,
   });
   let { data } = useFetchApi("동물병원", position);
-  console.log(data);
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
       setCenter({ lng: pos.coords.longitude, lat: pos.coords.latitude });
